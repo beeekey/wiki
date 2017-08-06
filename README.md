@@ -15,6 +15,8 @@ The original links will remain in the code, the internal are only added.
 
 The converted HTML is then saved as "source_edited.html" in the main directory, as all downloaded files (chaotic, sorry)
 
+The code of "source_edited.html" then can be copied to the wiki. May you have to add some stuff to your localsettings.php to have all this working.
+
 ### Prerequisitions
 * BeautifulSoup
 * lxml
