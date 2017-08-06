@@ -98,7 +98,7 @@ def download_all_files(file_url):
         local_file_url = local_file_url.replace('*','_')
 
     print(local_file_url)
-    # urllib.urlretrieve(file_url, local_file_url)
+    urllib.urlretrieve(file_url, local_file_url)
     return local_file_url
 
 
@@ -115,6 +115,7 @@ def strip_tags(soup):
 
 
 def dirty_replace_tags(html):
+    #TODO: Doesn't work!!!
     print('start replacing html the dirty way')
     replace_tags = [{'h1','=='},{'h2','==='},{'h3','===='},{'h4','====='},{'h5','======'}]
 
@@ -169,7 +170,9 @@ def save_to_local(soup, filename):
         f.write(html)
 
 
-# TODO: Table to wiki
+def table_to_wiki(soup):
+    # TODO: Table to wiki
+    pass
 
 
 
