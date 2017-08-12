@@ -27,19 +27,25 @@ def handle_links(soup):
     """ extracts all links and converts them to wiki tags
     does this with images also, to link to these external sources """
 
-    file_extensions_to_download = ['.jpg', '.jpeg', '.gif', '.png', '.bmp', '.pdf']
+    file_extensions_to_download = ['.jpg', '.jpeg', '.gif', '.png', '.bmp', '.pdf', '.doc', '.xls']
 
     links = soup.findAll('a')
     for link in links:
         # soup.find('a', text=link.text).replaceWith('[' + link['href'] + ' ' + link.text + ']')
 
         has_ext = False
+        is_not_img = False
         for ext in file_extensions_to_download:
             if ext in link['href']:
                 filename = download_all_files(link['href'])
                 has_ext = True
+                if ext == '.doc' or ext == '.pdf' or ext == '.xls':
+                    is_not_img = True
 
-        if has_ext:
+
+        if has_ext and is_not_img:
+            soup.find('a', text=link.text).replaceWith('[' + link['href'] + ' ' + link.text + '] [[Media:' + filename + ']]')
+        elif has_ext:
             soup.find('a', text=link.text).replaceWith('[' + link['href'] + ' ' + link.text + '] [[File:' + filename + ']]')
         else:
             soup.find('a', text=link.text).replaceWith('[' + link['href'] + ' ' + link.text + ']')
